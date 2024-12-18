@@ -1,31 +1,61 @@
 # Placeholder functions for Python basics, to be implemented later
 
 def add_numbers(a, b):
-    pass
+    if type(a) in [float,int] and type(b) in [float,int]:
+        return float(a)+float(b)
+    raise TypeError
 
 def find_maximum(a, b, c):
-    pass
+    if all(type(item) in [int,float] for item in [a,b,c]):
+        return max([a,b,c])
+    else:
+        raise TypeError
 
 def is_palindrome(string):
-    pass
+    if isinstance(string,str):
+        return string[::-1]==string
+    raise TypeError
 
+#print(is_palindrome(12321))
 def count_word_occurrences(text, word):
-    pass
-
+    if type(text)==str:
+        return text.lower().count(word)
+    else:
+        raise TypeError
+#print(count_word_occurrences("Python is great. Python is versatile.", "python"))
 def read_file_lines(filepath):
     pass
 
 def factorial(n):
-    pass
-
+    factorial=1
+    if n<0:
+        raise ValueError
+    elif n==1:
+        return factorial
+    else:
+        for value in range(1,int(n)+1):
+            factorial*=value
+        return factorial
+#print(factorial(5))
 def is_prime(n):
-    pass
+    for i in range(1,n):
+        if n%i==0:
+            return False
+    return True
 
 def sort_numbers(numbers):
-    pass
+    return sorted(numbers)
 
 def factorial(n):
-    pass
+    factorial=1
+    if n<0:
+        raise ValueError
+    elif n==1:
+        return factorial
+    else:
+        for value in range(1,int(n)+1):
+            factorial*=value
+        return factorial
 
 def fibonacci(n):
     pass
