@@ -16,15 +16,16 @@ def is_palindrome(string):
         return string[::-1]==string
     raise TypeError
 
-#print(is_palindrome(12321))
 def count_word_occurrences(text, word):
     if type(text)==str:
         return text.lower().count(word)
     else:
         raise TypeError
-#print(count_word_occurrences("Python is great. Python is versatile.", "python"))
+
 def read_file_lines(filepath):
-    pass
+    with open(filepath,'r') as r:
+        content=r.readlines()
+    return content
 
 def factorial(n):
     factorial=1
@@ -36,15 +37,24 @@ def factorial(n):
         for value in range(1,int(n)+1):
             factorial*=value
         return factorial
-#print(factorial(5))
+
 def is_prime(n):
-    for i in range(1,n):
-        if n%i==0:
+    if not isinstance(n, int):
+        raise TypeError
+    elif n<1:
+        raise ValueError
+    elif n==1:
+        return 1==6
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
             return False
     return True
 
 def sort_numbers(numbers):
-    return sorted(numbers)
+    if all(isinstance(items,int) for items in numbers):
+        return sorted(numbers)
+    else:
+        raise TypeError
 
 def factorial(n):
     factorial=1
@@ -58,7 +68,11 @@ def factorial(n):
         return factorial
 
 def fibonacci(n):
-    pass
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    return fibonacci(n - 1) + fibonacci(n - 2)
 
 def tower_of_hanoi(n, source, auxiliary, target):
     
@@ -82,10 +96,15 @@ def tower_of_hanoi(n, source, auxiliary, target):
 
 class Person:
     def __init__(self, name, age):
-        pass
-
-
+        if not isinstance(name,str):
+            raise TypeError
+        if not isinstance(age,int):
+           raise TypeError 
+        self.age=age
+        self.name=name
+            
 if __name__ == "__main__":
     # Placeholder functions for Python basics, to be implemented later
     #to test your functions, you can use the following code
-    print(add_numbers(3, 5)) #e.g
+    print(add_numbers(3, 5)) 
+    
